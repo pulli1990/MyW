@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#062c49"
+    tools:context="com.uniajc.equipo.myw.RegistrarActivity">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:id="@+id/Et_nombreR"
+        android:background="#ffffff"
+        android:layout_alignBottom="@+id/Tv_apellido"
+        android:layout_alignStart="@+id/Tv_apellido"
+        android:layout_marginBottom="29dp" />
+
+    <EditText
+        android:id="@+id/id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="46dp"
+        android:layout_marginRight="20dp"
+        android:background="#ffffff"
+        android:layout_above="@+id/Et_nombreR"
+        android:layout_alignStart="@+id/Et_nombreR" />
+
+    <TextView
+        android:id="@+id/Tv_apellido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Et_apellidoR"
+        android:layout_alignStart="@+id/Et_apellidoR"
+        android:layout_marginBottom="12dp"
+        android:text="Apellido"
+        android:textColor="#ffffff"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/Et_apellidoR"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Tv_contraseñaR"
+        android:layout_centerHorizontal="true"
+        android:background="#ffffff"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/Tv_contraseñaR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Et_contrsaeñaR"
+        android:layout_alignStart="@+id/Et_apellidoR"
+        android:layout_marginBottom="16dp"
+        android:text="Contraseña"
+        android:textColor="#ffffff"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/Et_contrsaeñaR"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/Tv_contraseñaR"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:background="#ffffff"
+        android:ems="10" />
+
+    <Button
+        android:id="@+id/Btn_registrarR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="81dp"
+        android:text="@string/registrar" />
+
+    <TextView
+        android:id="@+id/Tv_nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Et_nombreR"
+        android:layout_alignStart="@+id/id"
+        android:layout_marginBottom="15dp"
+        android:text="Nombre"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/id"
+        android:layout_alignStart="@+id/id"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="11dp"
+        android:text="id:"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/Tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Et_emailR"
+        android:layout_alignStart="@+id/Et_contrsaeñaR"
+        android:layout_marginBottom="21dp"
+        android:text="Email"
+        android:textColor="@android:color/white" />
+
+    <EditText
+        android:id="@+id/Et_emailR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Btn_registrarR"
+        android:layout_alignEnd="@+id/Et_contrsaeñaR"
+        android:layout_alignStart="@+id/Tv_email"
+        android:layout_marginBottom="21dp"
+        android:background="#ffffff"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
+</RelativeLayout>

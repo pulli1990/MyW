@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.uniajc.equipo.myw.SesionFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/Tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/email"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+
+    <EditText
+        android:id="@+id/Pt_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/Tv_email"
+        android:layout_below="@+id/Tv_email"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/Tv_contraseña"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/Pt_email"
+        android:layout_below="@+id/Pt_email"
+        android:layout_marginTop="11dp"
+        android:text="@string/contraseña" />
+
+    <EditText
+        android:id="@+id/Et_contraseña"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/Pt_email"
+        android:layout_alignStart="@+id/Pt_email"
+        android:layout_below="@+id/Tv_contraseña"
+
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/Btn_ingresar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/Et_contraseña"
+        android:layout_below="@+id/Et_contraseña"
+        android:text="@string/Entrar" />
+
+    <Button
+        android:id="@+id/Btn_registrarse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Et_contraseña"
+        android:layout_marginStart="13dp"
+        android:layout_toEndOf="@+id/Btn_ingresar"
+        android:text="@string/registrarse" />
+
+</RelativeLayout>

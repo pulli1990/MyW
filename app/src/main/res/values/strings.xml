@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MyW</string>
+    <string name="email">correo:</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="Entrar">Entrar</string>
+    <string name="registrarse">Registrarse Ahora</string>
+    <string name="registrar">Guardar</string>
+    <string name="title_activity_deseo">DeseoActivity</string>
+    <string name="userLogin">user</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
