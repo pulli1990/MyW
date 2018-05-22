@@ -46,7 +46,8 @@ public class RegistrarActivity extends AppCompatActivity implements Response.Lis
 
                     RegistroBd();
                 } else {
-                    Toast.makeText(RegistrarActivity.this, "Hay campos por ingresar", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrarActivity.this, "Datos insertados con exito" , Toast.LENGTH_LONG).show();
+                   // Toast.makeText(RegistrarActivity.this, "Hay campos por ingresar", Toast.LENGTH_LONG).show();
                 }
 
             }

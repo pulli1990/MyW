@@ -91,8 +91,8 @@ registrarse.setOnClickListener(new View.OnClickListener() {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Intent intent = new Intent(getContext(), DeseoActivity.class);
-          intent.putExtra(DeseoActivity.nombre, usuario.getApellido());
+        Intent intent = new Intent(getContext(), DesActivity.class);
+          intent.putExtra(DesActivity.nombre, usuario.getApellido());
         startActivity(intent);
 
     }
@@ -101,6 +101,7 @@ registrarse.setOnClickListener(new View.OnClickListener() {
     private void  iniciarSesion(){
         String url ="http://192.168.1.34/login/sesion.php?email="+email.getText().toString()+
                 "&contrasena="+contrasena.getText().toString();
+
 jrq=new JsonObjectRequest(Request.Method.GET, url,null, this,this);
 rq.add(jrq);
     }

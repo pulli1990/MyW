@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 public class DeseoActivity extends AppCompatActivity {
+
 public static final  String nombre="nombre";
 private TextView usuario;
     @Override
