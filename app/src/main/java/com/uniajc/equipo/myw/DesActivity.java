@@ -1,8 +1,11 @@
 package com.uniajc.equipo.myw;
 
+import android.app.VoiceInteractor;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,32 +15,74 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
 
 public class DesActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-    public static final  String nombre="nombre";
-    private TextView usuario;
-
+        implements NavigationView.OnNavigationItemSelectedListener  {
+   // public static final  String idUser="idUser";
+   RequestQueue rq;
+    JsonRequest jrq;
+    private TextView usuarioId;
+    private Button cargarDeseo;
+    public  String iduser="";
+    ListView listaDeseos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_des);
-        usuario=(TextView)findViewById(R.id.tv_nombreBienvenido);
-        String usuario1=getIntent().getStringExtra("nombre");
-       // usuario.setText("Bienvenido  "+usuario1);
+        usuarioId=(TextView)findViewById(R.id.tv_idUser);
+        cargarDeseo=(Button)findViewById(R.id.cargarDeseo);
+        listaDeseos=(ListView)findViewById(R.id.progresBar);
+
+        // Instantiate the RequestQueue.
+        rq = Volley.newRequestQueue(DesActivity.this);
+        int mealId;
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if(bundle != null){
+            mealId = bundle.getInt("idUser");
+            usuarioId.setText(""+mealId);
+          //  Toast.makeText(DesActivity.this, "id r"+usuarioId.getText().toString(),Toast.LENGTH_LONG).show();
+
+            Toast.makeText(DesActivity.this, "id"+mealId,Toast.LENGTH_LONG).show();
+        }
+
+
+
+
         /////////////////////___________________________________________________
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAdd);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Deseo deseo=new Deseo();
+                Intent intent = new Intent(DesActivity.this, CrearDeseoActivity.class);
+               intent.putExtra("idUserCrearDeseo", usuarioId.getText().toString());
+                startActivity(intent);
+           /*     Snackbar.make(view, "Se presionó el FAB", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
             }
-        });
+        });;
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -47,6 +92,57 @@ public class DesActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+//---------------------------------------------------------------------------------
+        cargarDeseo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String url ="http://192.168.1.34/login/leerDeseos.php?id="+usuarioId.getText().toString();
+                EnviarRecibirDatos(url);
+
+            }
+        });
+    }
+
+    public void EnviarRecibirDatos(String URL){
+        Toast.makeText(getApplicationContext(), ""+URL, Toast.LENGTH_SHORT).show();
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                response = response.replace("][",",");
+                if (response.length()>0){
+                    try {
+                        JSONArray ja = new JSONArray(response);
+                        Log.i("sizejson",""+ja.length());
+                        CargarListView(ja);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+        queue.add(stringRequest);
+    }
+
+    public void CargarListView(JSONArray ja){
+        ArrayList<String> lista = new ArrayList<>();
+        for(int i=0;i<ja.length();i+=5){
+            try {
+                lista.add(ja.getString(i)+" "+ja.getString(i+1)+" "+ja.getString(i+2)+" "+ja.getString(i+3)
+                        +" "+ja.getString(i+4));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, lista);
+        listaDeseos.setAdapter(adaptador);
     }
 
     @Override
