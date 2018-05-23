@@ -77,13 +77,17 @@ registrarse.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onResponse(JSONObject response) {
         User usuario=new User();
-        Toast.makeText(getContext(), "El usuario con el email"+email.getText().toString()+" se ha encontrado en nuestras base de datos" , Toast.LENGTH_LONG).show();
 
+        Toast.makeText(getContext(), "El usuario con el email"+email.getText().toString()+" se ha encontrado en nuestras base de datos" , Toast.LENGTH_LONG).show();
+        email.setText("");
+        contrasena.setText("");
         JSONArray jsonArray=response.optJSONArray("datos");
         JSONObject jsonObject=null;
+        
 
         try {
             jsonObject= jsonArray.getJSONObject(0);
+            usuario.setId(jsonObject.optInt("id"));
             usuario.setEmail(jsonObject.optString("email"));
             usuario.setContrasena(jsonObject.optString("contrasena"));
             usuario.setNombre(jsonObject.optString("nommbre"));
@@ -91,8 +95,10 @@ registrarse.setOnClickListener(new View.OnClickListener() {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+       // Toast.makeText(getContext(), "id="+usuario.getId(), Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getContext(), DesActivity.class);
-          intent.putExtra(DesActivity.nombre, usuario.getApellido());
+        intent.putExtra("idUser", usuario.getId());
+          //intent.putExtra(DesActivity.idUser, usuario.getId());
         startActivity(intent);
 
     }
